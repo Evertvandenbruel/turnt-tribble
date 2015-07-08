@@ -1,0 +1,15 @@
+db:
+  image: postgres
+  ports:
+    - "5432"
+web:
+  extends:
+    file: common.yml
+    service: web
+  environment:
+    - BUNDLE_PATH=/bundle
+  volumes:
+    - .bundle:/bundle
+    - .:/rails
+  links:
+    - db
